@@ -78,7 +78,7 @@ def pack_to_png(chara_data, base_image):
 st.sidebar.header("🔑 API 設定基地")
 api_provider = st.sidebar.selectbox(
     "選擇 AI 模組來源",
-    ["Google Gemini (Flash)", "OpenAI ChatGPT (GPT-4o)", "Anthropic Claude (3.5 Sonnet)", "DeepSeek"]
+    ["Google Gemini ", "OpenAI ChatGPT ", "Anthropic Claude ", "DeepSeek"]
 )
 provider_key = api_provider.split(' ')[0]
 api_key = st.sidebar.text_input(f"請輸入你的 {provider_key} API Key", type="password")
