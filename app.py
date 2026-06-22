@@ -179,12 +179,12 @@ with col1:
     tab1, tab2 = st.tabs(["📚 召喚已有角色", "🎲 鍛造原創角色"])
     
     with tab1:
-        st.subheader("召喚已有動漫/遊戲角色")
+        st.subheader("召喚已有動漫/遊戲/現實人物角色")
         row1_col1, row1_col2 = st.columns(2)
         with row1_col1:
-            char_name = st.text_input("請輸入角色名稱 (例如：沖田總司)")
+            char_name = st.text_input("請輸入角色名稱 (例如：七海千秋)")
         with row1_col2:
-            source = st.text_input("出自哪部作品？ (例如：Fate/Grand Order)")
+            source = st.text_input("出自哪部作品？ (例如：槍彈辯駁)")
             
         bg_lore = st.text_area("📖 角色百科資料補充 (防幻覺)", height=120)
         uploaded_img = st.file_uploader("🖼️ 上傳角色圖片 (可選)", type=["png", "jpg", "jpeg"], key="img1")
@@ -332,4 +332,4 @@ with col2:
 
     else:
         st.info("請先在左側生成角色，這裡將顯示可編輯的詳細面板。")
-        st.button("💾 封印並下載 PNG 角色卡", disabled=True, use_container_width=True)
+        st.button("💾 下載 PNG 角色卡", disabled=True, use_container_width=True)
