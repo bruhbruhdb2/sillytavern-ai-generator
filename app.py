@@ -41,7 +41,7 @@ def generate_default_avatar(name):
     return img
 
 def pack_to_png(chara_data, base_image):
-    """將 Python 字典封裝進 PNG，避開酒館的提示詞覆蓋 Bug"""
+    """將 Python 字典封裝進 PNG，並移除專案標籤與註記"""
     full_data = {
         "name": chara_data.get("name", "Unknown"),
         "description": chara_data.get("description", ""),
@@ -49,10 +49,12 @@ def pack_to_png(chara_data, base_image):
         "scenario": chara_data.get("scenario", ""),
         "first_mes": chara_data.get("first_mes", ""),
         "mes_example": chara_data.get("mes_example", ""),
-        "creator_notes": "由台大期末專案 AI 生成器鍛造 (包含局部微調)",
+        # 1. 將這裡改為空字串，或換成你想要的專業產品註記
+        "creator_notes": "來自 AI 角色卡生成器", 
         "alternate_greetings": [],
-        "tags": ["AI Generated", "Taiwan"],
-        "creator": "SillyTavern Generator",
+        # 2. 這裡移除了 "Taiwan" 標籤，只保留 "AI Generated"（你也可以改成別的，例如 "Anime"）
+        "tags": ["AI Generated"], 
+        "creator": "AI Card Generator",
         "character_version": "main",
         "extensions": {}
     }
@@ -80,6 +82,10 @@ api_provider = st.sidebar.selectbox(
 )
 provider_key = api_provider.split(' ')[0]
 api_key = st.sidebar.text_input(f"請輸入你的 {provider_key} API Key", type="password")
+# 加入信任聲明與開源連結
+st.sidebar.write("---") # 加一條分隔線讓畫面更好看
+st.sidebar.info("🔒 **隱私與安全聲明**\n\n本網站為開源專案，您的 API Key 僅會在當下發送給 AI 官方伺服器，**絕對不會儲存於任何資料庫或後台**。重新整理網頁後即刻銷毀。")
+st.sidebar.markdown("[👉 點此查看本專案 GitHub 開源程式碼](https://github.com/bruhbruhdb2/sillytavern-ai-generator.git)")
 
 # ==========================================
 # 4. 整合式多平台 API 呼叫函式 (支援強制純文字模式)
